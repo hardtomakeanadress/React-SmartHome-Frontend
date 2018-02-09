@@ -8,34 +8,40 @@ class App extends Component {
     super(props);
 
     this.state = {
-      rooms: []
+      rooms: [
+        "kitchen",
+        "bedroom",
+        "office",
+        "bathroom",
+        "balcony"
+    ]
     };
+    this.onClickHandler = this.onClickHandler.bind(this);
   }
 
-  componentDidMount() {
-    fetch('/rooms')
-      .then(res => res.json())
-      .then(rooms => this.setState({rooms}))
+  getSensors(param) {
+    fetch(`/?name=${param}`)
+      .then(response => response.json())
+      .then( data => console.log(data))
       .catch(reason => {console.log(reason)})
   }
 
-  getRoom() {
-    // fetch a single room
-    // fetch('/room')  
+  componentDidMount() {
+    // get all the rooms
+    //setState
+  }
+
+  onClickHandler = () => {
+    console.log(this.getSensors('balcony'));
   }
 
   render() {
     return (
       <div className="container">
-        {this.state.rooms.map((data) => {
-          return (
-            <Room name       = {data.name}
-                  key        = {data.id}
-                  id         = {data.id}
-                  sensors    = {data.sensors} 
-                  graphImage = {data.graphImage} />
-          );
-        })}
+        <Room name       = {this.state.rooms[2]}
+              graphImage = {`${this.state.rooms[2]}.png`}
+              onClick    ={this.onClickHandler}
+        />
       </div>
     );
   }
