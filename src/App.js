@@ -1,49 +1,64 @@
 import React, { Component } from 'react';
 import './App.css';
-import Room from './components/Room/Room'
+import Room from './components/Room/Room';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      rooms: [
-        "kitchen",
-        "bedroom",
-        "office",
-        "bathroom",
-        "balcony"
-    ]
+    this.state = {rooms:
+      [
+        {room:"kitchen",id:1,sensors:{temperature:0,humidity:0,voltage:0,date:"N/A"}},
+        {room:"balcony",id:2,sensors:{temperature:0,humidity:0,voltage:0,date:"N/A"}},
+        {room:"bedroom",id:3,sensors:{temperature:0,humidity:0,voltage:0,date:"N/A"}},
+        {room:"office",id:4,sensors:{temperature:0,humidity:0,voltage:0,date:"N/A"}},
+        {room:"bathroom",id:5,sensors:{temperature:0,humidity:0,voltage:0,date:"N/A"}}
+      ]
     };
-    this.onClickHandler = this.onClickHandler.bind(this);
+    this.url = "http://localhost:3003/";
   }
 
-  getSensors(param) {
-    fetch(`/?name=${param}`)
+  //update room sensor Data
+  updateSensor(data) {
+    console.log('loading');
+    const newState = this.state.rooms.map((room) => {
+      const singleRoom = room;
+      singleRoom.sensors.temperature += 10;
+      return singleRoom;
+    });
+    this.setState(newState);
+  }
+
+  //get a single room details
+  getRoomDetails(roomName) {
+    console.log('Details for this room: ', roomName);
+    const url = `${this.url}?name=${roomName}`;
+    fetch(url)
       .then(response => response.json())
-      .then( data => console.log(data))
-      .catch(reason => {console.log(reason)})
+      .then(data => this.updateSensor(data));
   }
 
-  componentDidMount() {
-    // get all the rooms
-    //setState
-  }
-
-  onClickHandler = () => {
-    console.log(this.getSensors('balcony'));
+  //handle clicks
+  onClickHandler = (event) => {
+    this.getRoomDetails(event.currentTarget.id);
   }
 
   render() {
     return (
-      <div className="container">
-        <Room name       = {this.state.rooms[2]}
-              graphImage = {`${this.state.rooms[2]}.png`}
-              onClick    ={this.onClickHandler}
-        />
+      <div className = "container">
+        {this.state.rooms.map( (data) => {
+          return (
+            <Room name={data.room}
+                  id  ={data.room}
+                  key ={data.id}
+                  image = {data.room}
+                  sensorsData={data.sensors}
+                  onClick={this.onClickHandler}/>
+          )
+        })}
       </div>
-    );
+    )
   }
 }
 

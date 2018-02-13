@@ -1,4 +1,4 @@
-.Room {
+.room {
     display: inline-block;
     height: auto;
     width: 200px;
@@ -9,10 +9,10 @@
     text-align: center;
 }
 
-.Room:active {
-    background-color: lightgreen;   
+.room:active {
+    background-color: lightgreen;
 }
 
-.Room:hover {
+.room:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

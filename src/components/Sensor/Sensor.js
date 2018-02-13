@@ -6,10 +6,10 @@ const Sensor = (props) => {
         <div className='Sensor'>
             <div className="container">
               <h5>Sensors:</h5>
-              <div>Temperature: {props.temperature}</div>
-              <div>Humidity: {props.humidity}</div>
-              <div>Voltage: {props.voltage}</div>
-              <div>Time: {props.time}</div>
+              <div>Temperature: {props.sensorsData.temperature}</div>
+              <div>Humidity: {props.sensorsData.humidity}</div>
+              <div>Voltage: {props.sensorsData.voltage}</div>
+              <div>Time: {props.sensorsData.date}</div>
             </div>
         </div>
     )
