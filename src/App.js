@@ -6,7 +6,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-
+    this.onClickHandler = this.onClickHandler.bind(this);
     this.state = {rooms:[]};
     this.url = "http://192.168.0.120:3003/";
   }
@@ -41,10 +41,13 @@ class App extends Component {
   //     .then(data => this.updateSensor(data));
   // }
 
-  //handle clicks
-  // onClickHandler = (event) => {
-  //   this.getRoomDetails(event.currentTarget.id);
-  // }
+  // handle clicks
+  onClickHandler = (event) => {
+    console.log('clicked');
+    fetch(this.url)
+      .then(response => response.json())
+      .then(responseJSON => this.setState({rooms:responseJSON}, this.stateIsChanged));
+  }
 
   render() {
     return (
@@ -53,6 +56,7 @@ class App extends Component {
           return (
             <Room data={each}
                   key={each.room}
+                  onClick={this.onClickHandler}
             />
           )
         })}
