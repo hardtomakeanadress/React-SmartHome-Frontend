@@ -1,30 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Room.css';
-// import Sensor from '../Sensor/Sensor';
+import Sensor from '../Sensor/Sensor';
 // import Control from '../Control/Control';
 
-class Room extends Component {
+const Room = (props) => {
+  return (
+    <div className="room" id={props.data.room}>
+      <h2>{props.data.room}</h2>
+      <Sensor datetime={props.data.datetime}
+              humidity={props.data.humidity}
+              temperature={props.data.temperature}
+              voltage={props.data.voltage}
+      />
+    </div>
+  )
 
-  render(props) {
-    console.log(props);
-    return (<div />);
-    // const image = require(`./img/${room}.png`)
-    // return(
-    //   <div className="room" id={room}>
-    //       <h2>{room}</h2>
-    //       <img src={image}
-    //            style={{width: 50, height: 50}}
-    //            alt={room} />
-    //       <Sensor datetime={datetime}
-    //               temperature = {temperature}
-    //               humidity = {humidity}
-    //               voltage = {voltage}
-    //       />
-    //       <Control />
-    //   </div>
-    // )
-  }
+   
 }
-// Room.defaultProps = {};
 
 export default Room;

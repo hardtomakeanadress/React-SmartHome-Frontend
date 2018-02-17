@@ -50,7 +50,6 @@ class App extends Component {
     return (
       <div className = "container">
         {this.state.rooms.map( (each) => {
-          console.log(each);
           return (
             <Room data={each}
                   key={each.room}
