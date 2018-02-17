@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
 
     this.state = {rooms:[]};
-    this.url = "http://localhost:3003/";
+    this.url = "http://192.168.0.120:3003/";
   }
 
   componentDidMount(){

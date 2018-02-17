@@ -4,6 +4,7 @@ import Sensor from '../Sensor/Sensor';
 // import Control from '../Control/Control';
 
 const Room = (props) => {
+  console.log(props.data);
   return (
     <div className="room" id={props.data.room}>
       <h2>{props.data.room}</h2>
