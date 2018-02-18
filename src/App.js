@@ -21,26 +21,6 @@ class App extends Component {
     console.log('State is changed!');
   }
 
-  // //update room sensor Data
-  // updateSensor(data) {
-  //   console.log('loading');
-  //   const newState = this.state.rooms.map((room) => {
-  //     const singleRoom = room;
-  //     singleRoom.sensors.temperature += 10;
-  //     return singleRoom;
-  //   });
-  //   this.setState(newState);
-  // }
-
-  //get a single room details
-  // getRoomDetails(roomName) {
-  //   console.log('Details for this room: ', roomName);
-  //   const url = `${this.url}?name=${roomName}`;
-  //   fetch(url)
-  //     .then(response => response.json())
-  //     .then(data => this.updateSensor(data));
-  // }
-
   // handle clicks
   onClickHandler = (event) => {
     console.log('clicked');

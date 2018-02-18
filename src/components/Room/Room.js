@@ -6,6 +6,7 @@ import Sensor from '../Sensor/Sensor';
 const Room = (props) => {
   return (
     <div className="room" id={props.data.room} onClick={props.onClick}>
+      <img src = {require(`./img/${props.data.room}.png`)} />
       <h2>{props.data.room}</h2>
       <Sensor datetime={props.data.datetime}
               humidity={props.data.humidity}
